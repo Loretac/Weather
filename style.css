@@ -1,5 +1,7 @@
 body{
-    background-color: white;
+    font-family:helvetica;
+    background-color: #262626;
+    color:white;
     margin-top:10px;
     margin-left:auto;
     margin-right:auto;
@@ -8,5 +10,38 @@ body{
     height: 90%;
     min-width: 400px;
     max-width: 600px;
+
+}
+
+h1{
+    text-align: center;
+    font-size: 5em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h2{
+    text-align: center;
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h3{
+    text-align: center;
+    font-size: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+img{
+    margin-top: 0;
+    margin-bottom: 0;
+
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /*width: 5%;*/
 
 }
