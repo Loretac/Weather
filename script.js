@@ -7,18 +7,25 @@ document.getElementById("temp").textContent = "--";
 
 function bindButtons(){
 
-    // add event to the zipcode submit button
-    document.getElementById("zipSubmit").addEventListener("click", function(event){
+    // add event to the input submit button
+    document.getElementById("submit").addEventListener("click", function(event){
         var req = new XMLHttpRequest();
 
-        // initialize ZipCode to null
-        var payload = {ZipCode:null};
+        // initialize input to null
+        var payload = {input:null};
 
         // get zip code from text box
-        payload.ZipCode = document.getElementById("ZipCode").value;
+        payload.input = document.getElementById("userInput").value;
 
-        // since default value is kelvins, add &units=imperial
-        req.open("GET", "http://api.openweathermap.org/data/2.5/weather?zip=" + payload.ZipCode + ",us&units=imperial&appid=" + apiKey, true);
+        if(!isNaN(payload.input)){
+                    // since default value is kelvins, add &units=imperial
+            req.open("GET", "http://api.openweathermap.org/data/2.5/weather?zip=" + payload.input + ",us&units=imperial&appid=" + apiKey, true);
+        }
+        else{
+            req.open("GET", "http://api.openweathermap.org/data/2.5/weather?q=" + payload.input + ",us&units=imperial&appid=" + apiKey, true);
+        }
+
+
 
         // asynchronous request
         req.addEventListener("load", function(){
@@ -32,43 +39,11 @@ function bindButtons(){
         });
 
         // send the request
-        req.send(payload.ZipCode);
+        req.send(payload.input);
 
         // prevent submit button from refreshing page
         event.preventDefault();
     });
-
-    document.getElementById("citySubmit").addEventListener("click", function(
-        event){
-        var req = new XMLHttpRequest();
-
-        // initialize city to null
-        var payload = {City:null};
-
-        // get city from text box
-        payload.City = document.getElementById("City").value;
-
-        req.open("GET", "http://api.openweathermap.org/data/2.5/weather?q=" + payload.City + ",us&units=imperial&appid=" + apiKey, true);
-
-        // asynchronous request
-        req.addEventListener("load", function(){
-            if(req.status >= 200 && req.status < 400){
-                //retrieve info
-                getInfo(req.responseText);
-            }
-            else{
-                console.log("Error in network request: " + req.statusText);
-            }
-        });
-
-        // send the request
-        req.send(payload.City);
-
-        // prevent submit button from refreshing page
-        event.preventDefault();
-    });
-
-
 }
 
 // populate html spans with responseText

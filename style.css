@@ -5,6 +5,7 @@ body{
     margin-top:10px;
     margin-left:auto;
     margin-right:auto;
+    text-align: center;
 
     width: 90%;
     height: 90%;
@@ -14,21 +15,18 @@ body{
 }
 
 h1{
-    text-align: center;
     font-size: 5em;
     margin-top: 0;
     margin-bottom: 0;
 }
 
 h2{
-    text-align: center;
     font-size: 2em;
     margin-top: 0;
     margin-bottom: 0;
 }
 
 h3{
-    text-align: center;
     font-size: 1em;
     margin-top: 0;
     margin-bottom: 0;
@@ -42,6 +40,6 @@ img{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    /*width: 5%;*/
+    
 
 }
