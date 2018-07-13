@@ -3,14 +3,16 @@ var apiKey = "8a96a0f7e95fd313f8c454107d8dc14d";
 // when content is loaded, bind buttons
 document.addEventListener("DOMContentLoaded",bindButtons);
 
-document.getElementById("temp").textContent = "- -";
+// placeholder dashes for temperature
+document.getElementById("temp").textContent = "--";
 
+// bind submit button to an event listener
 function bindButtons(){
 
     // add event to the input submit button
     document.getElementById("submit").addEventListener("click", function(event){
         
-
+        // using a script for JSONP
         var script = document.createElement('script');
 
         var payload = {input:null};
@@ -19,13 +21,14 @@ function bindButtons(){
         payload.input = document.getElementById("userInput").value;
 
         // check if input is a number
-        if(!isNaN(payload.input)){ // city name
+        if(!isNaN(payload.input)){ // input is a city name
             script.src = "https://api.openweathermap.org/data/2.5/weather?zip=" + payload.input + ",us&units=imperial&appid=" + apiKey + "&callback=getInfo";
         }
-        else{ // zip code
+        else{ // input is a zip code
             script.src = "https://api.openweathermap.org/data/2.5/weather?q=" + payload.input + "&units=imperial&appid=" + apiKey + "&callback=getInfo";
         }
 
+        // add the script to the head
         document.getElementsByTagName('head')[0].appendChild(script);
 
         //prevent submit button from refreshing page
@@ -37,11 +40,8 @@ function bindButtons(){
 // populate html spans with responseText
 function getInfo(responseText){
 
-
-    //var response = JSON.parse(responseText);
+    // No need to parse; already done
     var response = responseText;
-
-    console.log(response);
 
     // set the temp in response to temp. add the degrees fahrenheit symbol
     document.getElementById("cityName").textContent = response.name;
@@ -49,7 +49,7 @@ function getInfo(responseText){
     document.getElementById("hilo").textContent = "H " + Math.round(response.main.temp_max) + "\u00B0 / L " + Math.round(response.main.temp_min) + "\u00B0";
     document.getElementById("icon").src = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
 
-
+    // change the background color based on the icon code
     var code = response.weather[0].icon;
 
     if(code == "01d"){
@@ -73,7 +73,7 @@ function getInfo(responseText){
         document.getElementById("container").style.borderColor = "black";
     }
     else if(code == "09d" || code == "10d" || code == "11d"){
-        document.body.style.backgroundColor = "#666666"; // rain or thunderstorm
+        document.body.style.backgroundColor = "#a6a6a6"; // rain or thunderstorm
         document.body.style.color = "black";
         document.getElementById("container").style.borderColor = "black";
     }
