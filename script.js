@@ -3,7 +3,7 @@ var apiKey = "8a96a0f7e95fd313f8c454107d8dc14d";
 // when content is loaded, bind buttons
 document.addEventListener("DOMContentLoaded",bindButtons);
 
-document.getElementById("temp").textContent = "--";
+document.getElementById("temp").textContent = "---";
 
 function bindButtons(){
 
