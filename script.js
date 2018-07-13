@@ -3,7 +3,7 @@ var apiKey = "8a96a0f7e95fd313f8c454107d8dc14d";
 // when content is loaded, bind buttons
 document.addEventListener("DOMContentLoaded",bindButtons);
 
-document.getElementById("temp").textContent = "---";
+document.getElementById("temp").textContent = "- -";
 
 function bindButtons(){
 
@@ -20,10 +20,10 @@ function bindButtons(){
 
         // check if input is a number
         if(!isNaN(payload.input)){ // city name
-            script.src = "http://api.openweathermap.org/data/2.5/weather?zip=" + payload.input + ",us&units=imperial&appid=" + apiKey + "&callback=getInfo";
+            script.src = "https://api.openweathermap.org/data/2.5/weather?zip=" + payload.input + ",us&units=imperial&appid=" + apiKey + "&callback=getInfo";
         }
         else{ // zip code
-            script.src = "http://api.openweathermap.org/data/2.5/weather?q=" + payload.input + "&units=imperial&appid=" + apiKey + "&callback=getInfo";
+            script.src = "https://api.openweathermap.org/data/2.5/weather?q=" + payload.input + "&units=imperial&appid=" + apiKey + "&callback=getInfo";
         }
 
         document.getElementsByTagName('head')[0].appendChild(script);
